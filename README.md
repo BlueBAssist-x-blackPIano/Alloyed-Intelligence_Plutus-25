@@ -574,10 +574,11 @@ Value Unit:        USD Million
 
 ### What Makes This Project Unique?
 
-**First-of-its-Kind Hybrid Approach**
-- Combines statistical rigor (SARIMAX) with deep learning power (LSTM)
-- Residual correction methodology improves accuracy by 15-20%
-- Outperforms single-model approaches consistently
+**First-of-its-Kind SARIMAX & Bi-Directional LSTM Approach**
+- Implementation of SARIMAX with statistical validation of optimal values for ARIMA parameters d, p, q with adf test , PACF plot & ACF plot
+- Imrovement in basline rmse upto 13%
+- Implementation of Bi-Directional noisy volitile copper import dataset focusing on recent trends (past 6 month)
+- Outperforms the baseline rmse upto 13-25%
 
 
 **Policy-Relevant Focus**
