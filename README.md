@@ -1,12 +1,16 @@
-# India's Critical Minerals EXIM Analysis & Forecasting System
+
+# Alloyed Intelligence #
+## India's Critical Minerals EXIM Analysis & Forecasting System
+
 
 **Strategic Intelligence for Mineral Security: Copper, Lithium & Graphite**
 
-![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
+![Project](https://img.shields.io/badge/Project-Hackathon-blue.svg)
 ![ML Models](https://img.shields.io/badge/ML-SARIMAX%20%7C%20LSTM%20%7C%20Hybrid-green.svg)
-![Status](https://img.shields.io/badge/Status-Production%20Ready-success.svg)
-
----
+![Mineral](https://img.shields.io/badge/Mineral-AtmaNirbharBharat-success.svg)
+![Names](https://img.shields.io/badge/Abirup-Darshan-yellow.svg)
+![Names](https://img.shields.io/badge/Apurba-Anish-pink.svg)
+![Names](https://img.shields.io/badge/Sathwik-BTech-orange.svg)
 
 ## Table of Contents
 - [What is This Project?](#what-is-this-project)
@@ -983,10 +987,12 @@ This project addresses a **critical national security challenge** using **state-
 
 <div align="center">
 
-### If this project helps your research or organization, consider starring it on GitHub!
 
-**Built with dedication for India's Mineral Security and Economic Resilience**
 
-*Version 1.0 | December 2025*
+**Built with ❤️ by Team Alloyed Intelligence for India's Mineral Security and Economic Resilience**
+
+**P S S Darshan**  - **Abhirup Sarkar**   - **Apurba Kar** - **Anish Bannerjee** - **Sathwik Parimi**
+
+*AtmaNirbharBharat| December 2025*
 
 </div>
