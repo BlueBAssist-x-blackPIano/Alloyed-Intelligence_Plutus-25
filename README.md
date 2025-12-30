@@ -655,6 +655,80 @@ Interpretation:
 - MAE (Mean Absolute Error): More robust to outliers
 - MAPE (Mean Absolute Percentage Error): Easier interpretation
 - R² Score: Goodness of fit measure
+### Model Architecture Details
+
+#### SARIMAX (Seasonal AutoRegressive Integrated Moving Average with eXogenous variables)
+
+**Mathematical Formulation**:
+```
+(1 - Σφᵢ Lⁱ)(1 - ΣΦᵢ Lˢⁱ)(1-L)ᵈ(1-Lˢ)ᴰ yₜ = (1 + Σθᵢ Lⁱ)(1 + ΣΘᵢ Lˢⁱ)εₜ
+
+Where:
+  φ = Non-seasonal AR parameters
+  Φ = Seasonal AR parameters
+  θ = Non-seasonal MA parameters
+  Θ = Seasonal MA parameters
+  L = Lag operator
+  d = Degree of differencing
+  D = Seasonal differencing
+  s = Seasonal period (12 months)
+```
+
+**Parameter Selection Process**:
+1. ACF plot → Determines q (MA order)
+2. PACF plot → Determines p (AR order)
+3. ADF test → Determines d (differencing needed)
+4. Seasonal patterns → Determines P, D, Q, s
+
+**Advantages**:
+- Captures seasonality explicitly
+- Interpretable parameters
+- Well-established theory
+
+**Limitations**:
+- Assumes linear relationships
+- Struggles with structural breaks
+- Requires stationary data
+
+---
+
+---
+
+#### LSTM (Long Short-Term Memory)
+
+**Architecture**:
+```
+Input Layer 
+    ↓
+Bi-Directional LSTM Layer (200 units)
+    ↓
+Dropout(0.3)
+    ↓
+LSTM Layer (50 unit)
+    ↓
+Dropout(0.3)
+    ↓
+Dense Layer (20 unit, relu activation)
+    ↓
+Dense Layer (1 output uni)
+    ↓
+Prediction 
+```
+
+**Training Strategy**:
+- **Recursive Forecasting**: Use predictions as inputs for future predictions
+- **Early Stopping**: Prevent overfitting (patience=5)
+- **Normalization**: MinMaxScaler (0, 1) range
+
+**Advantages**:
+- Captures non-linear patterns
+- Handles long-term dependencies
+- No stationarity requirement
+
+**Limitations**:
+- Black-box nature (less interpretable)
+- Requires more data
+- Longer training time
 
 ---
 
