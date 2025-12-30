@@ -135,8 +135,9 @@ Copper Import:
    - Search for "Jupyter"
    - Click Install
 4. Open `Dynamic_Charts.ipynb`
-5. Click **Run All** button at the top
-6. View interactive charts directly in VS Code!
+5. Root to the data directory separately for Lithium , Copper, Graphite
+6. Click **Run All** button at the top
+7. View interactive charts directly in VS Code!
 
 ### Option 3: Complete Analysis (30-45 minutes)
 
