@@ -21,12 +21,11 @@
 - [Step-by-Step Analysis Walkthrough](#step-by-step-analysis-walkthrough)
 - [Project Features & Highlights](#project-features--highlights)
 - [Data Sources & Methodology](#data-sources--methodology)
-- [Project Structure](#project-structure)
 - [Innovation Highlights](#innovation-highlights)
 - [Potential Impact](#potential-impact)
 - [Technical Deep Dive](#technical-deep-dive)
-- [Contributing](#contributing)
 - [License](#license)
+- [Report](#report)
 
 ---
 
@@ -55,7 +54,7 @@ India imports **critical minerals** essential for electric vehicles, electronics
 ## Why Should You Care?
 
 ### For Policymakers
-- Identify minerals with dangerous import dependencies
+- Identify minerals with critical import dependencies
 - Forecast future demand to plan strategic reserves
 - Understand trade balance trends for economic planning
 - Make data-driven decisions on domestic mining investments
@@ -94,23 +93,6 @@ Our analysis reveals critical vulnerabilities in India's mineral supply chain:
 - **Copper imports** steady growth of **23%** for infrastructure
 - Supply gap widens significantly for all three minerals
 
-### Model Performance
-
-Our hybrid ML approach delivers superior accuracy:
-
-```
-Model Performance Comparison (RMSE - Lower is Better)
-────────────────────────────────────────────────────
-Lithium Import:
-  SARIMAX:  12.45
-  LSTM:     10.87
-  Hybrid:    8.92  ✓ BEST PERFORMANCE
-
-Copper Import:
-  SARIMAX:  15.32
-  LSTM:     14.18
-  Hybrid:   11.76  ✓ BEST PERFORMANCE
-```
 
 ---
 
@@ -135,9 +117,8 @@ Copper Import:
    - Search for "Jupyter"
    - Click Install
 4. Open `Dynamic_Charts.ipynb`
-5. Root to the data directory separately for Lithium , Copper, Graphite
-6. Click **Run All** button at the top
-7. View interactive charts directly in VS Code!
+5. Click **Run All** button at the top
+6. View interactive charts directly in VS Code!
 
 ### Option 3: Complete Analysis (30-45 minutes)
 
@@ -230,7 +211,7 @@ pip install selenium webdriver-manager
 ```
 ┌─────────────────┐      ┌──────────────────┐      ┌─────────────────┐
 │  Data Collection│  →   │ Mineral Analysis │  →   │ Risk Assessment │
-│   (Optional)    │      │  (3 Minerals)    │      │   (HHI Matrix)  │
+│                 │      │  (3 Minerals)    │      │   (HHI Matrix)  │
 └─────────────────┘      └──────────────────┘      └─────────────────┘
          ↓                        ↓                         ↓
 ┌─────────────────┐      ┌──────────────────┐      ┌─────────────────┐
@@ -241,7 +222,7 @@ pip install selenium webdriver-manager
 
 ---
 
-### Phase 1: Data Collection (Optional - Skip if Using Existing Data)
+### Phase 1: Data Collection 
 
 **File**: `Extracted and formatted data/WebScrapingAutomation.ipynb`
 
@@ -293,7 +274,8 @@ pip install selenium webdriver-manager
    - Identifies seasonal orders (P, D, Q, s)
 
 4. **Model Training**
-   - SARIMAX model fitting
+   - SARIMAX model for exports
+   - Bidirectional LSTM for imports because even SARIMX failed
    - Parameter optimization
    - Model diagnostics
 
@@ -316,10 +298,9 @@ pip install selenium webdriver-manager
 
 **Comprehensive Analysis Including**:
 
-1. **Three Model Comparison**:
-   - **Model 1**: SARIMAX (Traditional time series)
-   - **Model 2**: Pure LSTM (Deep learning)
-   - **Model 3**: Hybrid (SARIMAX + LSTM residual correction)
+1. **Model Used**:
+   - SARIMAX (Traditional time series)
+  
 
 2. **Performance Evaluation**:
    ```python
@@ -334,11 +315,6 @@ pip install selenium webdriver-manager
    - Supply chain logic modeling
    - Policy impact simulations
 
-**Key Insight**:
-India doesn't mine Lithium domestically. The workflow is:
-```
-Foreign Order → Indian Factories Need Raw Material → Import Increases
-```
 
 **How to Run**:
 1. Open `Everything_Of_Lithium (1).ipynb`
@@ -365,6 +341,8 @@ Foreign Order → Indian Factories Need Raw Material → Import Increases
 2. Click **Run All**
 3. Compare with Lithium results
 
+**Key Insight**:
+Graphite is suffering from supply vulnerability with high HHI, leading to a monopoly risk from China.
 ---
 
 ### Phase 3: Strategic Risk Assessment
@@ -577,46 +555,7 @@ Value Unit:        USD Million
 - **Value Unit**: US Dollar Million
 - **Validation**: Cross-referenced with UN Comtrade database
 
-### HS Codes Used
-
-| Mineral  | HS Code    | Description                              |
-|----------|-----------|------------------------------------------|
-| Lithium  | 28255000  | Lithium oxide and hydroxide              |
-| Copper   | 74XXXXXX  | Copper and articles thereof              |
-| Graphite | 25041000  | Natural graphite                         |
-
 ### Model Parameters
-
-#### SARIMAX Configuration
-```python
-# Lithium Import Model
-Order: (2, 0, 2)           # (p, d, q)
-Seasonal Order: (1, 1, 1, 12)  # (P, D, Q, s)
-
-# Copper Import Model  
-Order: (2, 0, 3)
-Seasonal Order: (1, 1, 1, 12)
-
-# Graphite Import Model
-Order: (1, 0, 1)
-Seasonal Order: (1, 1, 1, 12)
-```
-
-#### LSTM Configuration
-```python
-Architecture:
-  - LSTM Layer: 80 units
-  - Activation: ReLU
-  - Dense Output: 1 unit
-  
-Training:
-  - Look-back Window: 3-4 months
-  - Epochs: 50 (with early stopping)
-  - Batch Size: 2
-  - Loss Function: MSE
-  - Optimizer: Adam
-```
-
 #### Train-Test Split
 - **Training Set**: All data except last 12 months
 - **Test Set**: Last 12 months (for validation)
@@ -635,32 +574,28 @@ Training:
 
 ### What Makes This Project Unique?
 
-**1. First-of-its-Kind Hybrid Approach**
+**First-of-its-Kind Hybrid Approach**
 - Combines statistical rigor (SARIMAX) with deep learning power (LSTM)
 - Residual correction methodology improves accuracy by 15-20%
 - Outperforms single-model approaches consistently
 
-**2. Production-Ready Automation**
-- End-to-end pipeline from data collection to forecasting
-- Scheduled execution capability
-- Model versioning and persistence
 
-**3. Policy-Relevant Focus**
+**Policy-Relevant Focus**
 - Directly addresses Atmanirbhar Bharat objectives
 - Aligns with National Mineral Policy 2019
 - Supports strategic reserve planning
 
-**4. Scalable Architecture**
+**Scalable Architecture**
 - Easily extensible to 30+ critical minerals
 - Modular design for quick adaptation
 - Template-based approach for new minerals
 
-**5. Risk Quantification**
+**Risk Quantification**
 - HHI-based methodology (industry standard)
 - Multi-dimensional risk assessment
 - Actionable insights for decision-makers
 
-**6. Transparent Methodology**
+**Transparent Methodology**
 - Open-source approach
 - Reproducible results
 - Clear documentation of assumptions
@@ -697,107 +632,6 @@ Training:
 ---
 
 ## Technical Deep Dive
-
-### Model Architecture Details
-
-#### SARIMAX (Seasonal AutoRegressive Integrated Moving Average with eXogenous variables)
-
-**Mathematical Formulation**:
-```
-(1 - Σφᵢ Lⁱ)(1 - ΣΦᵢ Lˢⁱ)(1-L)ᵈ(1-Lˢ)ᴰ yₜ = (1 + Σθᵢ Lⁱ)(1 + ΣΘᵢ Lˢⁱ)εₜ
-
-Where:
-  φ = Non-seasonal AR parameters
-  Φ = Seasonal AR parameters
-  θ = Non-seasonal MA parameters
-  Θ = Seasonal MA parameters
-  L = Lag operator
-  d = Degree of differencing
-  D = Seasonal differencing
-  s = Seasonal period (12 months)
-```
-
-**Parameter Selection Process**:
-1. ACF plot → Determines q (MA order)
-2. PACF plot → Determines p (AR order)
-3. ADF test → Determines d (differencing needed)
-4. Seasonal patterns → Determines P, D, Q, s
-
-**Advantages**:
-- Captures seasonality explicitly
-- Interpretable parameters
-- Well-established theory
-
-**Limitations**:
-- Assumes linear relationships
-- Struggles with structural breaks
-- Requires stationary data
-
----
-
-#### LSTM (Long Short-Term Memory)
-
-**Architecture**:
-```
-Input Layer (Look-back window: 3-4 months)
-    ↓
-LSTM Layer (80 units, ReLU activation)
-    ↓
-Dense Layer (1 output unit)
-    ↓
-Prediction (Next month's value)
-```
-
-**Training Strategy**:
-- **Recursive Forecasting**: Use predictions as inputs for future predictions
-- **Early Stopping**: Prevent overfitting (patience=5)
-- **Normalization**: MinMaxScaler (0, 1) range
-
-**Advantages**:
-- Captures non-linear patterns
-- Handles long-term dependencies
-- No stationarity requirement
-
-**Limitations**:
-- Black-box nature (less interpretable)
-- Requires more data
-- Longer training time
-
----
-
-#### Hybrid Model (SARIMAX + LSTM)
-
-**Innovation**: Two-stage residual correction approach
-
-**Algorithm**:
-```python
-Step 1: Train SARIMAX on original data
-  → Get fitted values and forecasts
-
-Step 2: Calculate residuals
-  residuals = actual_data - sarimax_fitted_values
-
-Step 3: Train LSTM on residuals
-  → Learn patterns SARIMAX missed
-
-Step 4: Final forecast
-  hybrid_forecast = sarimax_forecast + lstm_residual_forecast
-
-Step 5: Inverse transform (if log-transformed)
-  final_values = exp(hybrid_forecast)
-```
-
-**Why It Works**:
-- SARIMAX captures linear trends and seasonality
-- LSTM learns non-linear residual patterns
-- Combined: Best of both approaches
-
-**Performance Gains**:
-- 15-20% RMSE reduction vs single models
-- More robust to regime changes
-- Better uncertainty quantification
-
----
 
 ### Evaluation Metrics
 
@@ -946,6 +780,11 @@ else:
 
 This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
+
+## Report
+
+The report for this project is given in this link - [REPORT](https://drive.google.com/file/d/1XACZccdK1zQPCZBUE0JKH6DqUyKAnDm-/view?usp=sharing)
+
 ## Contact & Support
 
 **Project Team**: Alloyed Intelligence  
@@ -957,7 +796,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
   author = {Abhirup, Darshan, Apurba, Anish, Sathwik},
   title = {India's Critical Minerals EXIM Analysis & Forecasting System},
   year = {2025},
-  url = {https://github.com/yourusername/Alloyed-Intelligence_Plutus-25}
+  url = {https://github.com/BlueBAssist-x-blackPIano/Alloyed-Intelligence_Plutus-25/}
 }
 ```
 
